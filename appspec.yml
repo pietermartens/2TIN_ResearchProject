@@ -1,10 +1,6 @@
 version: 0.0
 os: linux
 files:
-  - source: /index.php
+  - source: /
     destination: /var/www/html/
-  - source: /add.php
-    destination: /var/www/html/
-  - source: /navbar.php
-    destination: /var/www/html
    

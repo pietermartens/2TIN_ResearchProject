@@ -27,18 +27,11 @@
                         'https://s3.amazonaws.com/staticimages.webapplication/nature.jpg'
                        );
         
-        $imageData = base64_encode(file_get_contents($image));
-        echo '<img src="data:image/jpeg;base64,'.$imageData.'">';
-          
         // scan the images directory for images to use in the carousel
         // first 2 keys in the returned array are . and ..   We will need to filter those!
-        $images = scandir('assets/images');
-        foreach($images as $key => $image){
-            if (!in_array($image,array(".",".."))){
-                // First item needs to get the active css class. Otherwise the carousel will not show
-                echo ($key == 2) ? '<div class="carousel-item active">' : '<div class="carousel-item">';
-                echo "<img class='d-block w-100' src='assets/images/$image'/></div>";
-            }     
+       foreach($images as $image){
+           $imageData = base64_encode(file_get_contents($image));
+            echo '<img src="data:image/jpeg;base64,'.$imageData.'">';
         }
     ?>
   </div>

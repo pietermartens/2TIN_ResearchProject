@@ -31,12 +31,12 @@
            'url' => 'https://s3.amazonaws.com/staticimages.webapplication/nature.jpg'
       );
         
-        $imageData = base64_encode(file_get_contents($image));
-      
-        foreach($images as $key => $url){
+        
+     foreach($images as $key => $url){
             if (!in_array($image,array(".",".."))){
                 // First item needs to get the active css class. Otherwise the carousel will not show
                 echo ($key == 2) ? '<div class="carousel-item active">' : '<div class="carousel-item">';
+                $imageData = base64_encode(file_get_contents($image));
                 echo "<img class='d-block w-100' src="data:image/jpeg;base64,'.$imageData.'"/></div>";
             }     
         }

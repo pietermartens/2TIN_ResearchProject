@@ -24,8 +24,13 @@
     <?php      
         // scan the images directory for images to use in the carousel
         // first 2 keys in the returned array are . and ..   We will need to filter those!
-        $images = scandir('assets/images');
-        foreach($images as $key => $image){
+        $images = array(
+            'url' => 'https://s3.amazonaws.com/staticimages.webapplication/fjords.jpg',
+            'url' => 'https://s3.amazonaws.com/staticimages.webapplication/lights.jpg',
+            'url' => 'https://s3.amazonaws.com/staticimages.webapplication/nature.jpg'
+        );
+      
+        foreach($images as $key => $url){
             if (!in_array($image,array(".",".."))){
                 // First item needs to get the active css class. Otherwise the carousel will not show
                 echo ($key == 2) ? '<div class="carousel-item active">' : '<div class="carousel-item">';

@@ -22,6 +22,23 @@
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <?php
+        use Aws\S3\S3Client;
+        use Aws\S3\Exception\S3Exception;
+        
+        try {
+        //create s3 client
+           $s3client = new S3Client([
+            'profile' => 'default',
+            'region' => 'us-east-1',
+            'version' => 'latest'
+           ]);
+           
+            $buckets = $s3client->listBuckets();
+            foreach($buckets['Buckets'] as $bucket){
+                echo $bucket['Name']."\n";
+            }
+            
+           
         // scan the images directory for images to use in the carousel
         // first 2 keys in the returned array are . and ..   We will need to filter those!
         $images = scandir('assets/images');

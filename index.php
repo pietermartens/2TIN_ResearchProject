@@ -27,7 +27,8 @@
                         'https://s3.amazonaws.com/staticimages.webapplication/nature.jpg'
                        );
         
-       print_r($images);
+        $imageData = base64_encode(file_get_contents($image));
+        echo '<img src="data:image/jpeg;base64,'.$imageData.'">';
           
         // scan the images directory for images to use in the carousel
         // first 2 keys in the returned array are . and ..   We will need to filter those!

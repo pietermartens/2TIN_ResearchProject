@@ -29,9 +29,9 @@
         
         // scan the images directory for images to use in the carousel
         // first 2 keys in the returned array are . and ..   We will need to filter those!
-       foreach($images as $image){
+       foreach($images as $key => $image){
             $imageData = base64_encode(file_get_contents($image));
-            echo'<div class="carousel-item active">' : '<div class="carousel-item">';
+            echo $key;
             echo '<img class='d-block w-100'  img src="data:image/jpeg;base64,'.$imageData.'">';
         }
     ?>

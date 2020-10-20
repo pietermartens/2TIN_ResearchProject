@@ -37,8 +37,10 @@
             foreach($buckets['Buckets'] as $bucket){
                 echo $bucket['Name']."\n";
             }
-            
-           
+        } catch (S3Exception $e) {
+            echo $e->getMessage() . "\n";
+        }
+             
         // scan the images directory for images to use in the carousel
         // first 2 keys in the returned array are . and ..   We will need to filter those!
         $images = scandir('assets/images');

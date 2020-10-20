@@ -32,7 +32,7 @@
        foreach($images as $key => $image){
             $imageData = base64_encode(file_get_contents($image));
             echo ($key == 0) ? '<div class="carousel-item active">' : '<div class="carousel-item">';
-            echo '<img src="data:image/jpeg;base64,'.$imageData.'">';
+            echo '<img class='d-block w-100' src="data:image/jpeg;base64,'.$imageData.'">';
         }
     ?>
   </div>

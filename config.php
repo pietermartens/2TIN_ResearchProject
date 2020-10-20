@@ -4,7 +4,7 @@
     $serverName = "sqldatabase.cf5ctuboq7jl.us-east-1.rds.amazonaws.com";
     $username = "admin";
     $password = "Cloud2020";
-    $dbName = "testData";
+    $dbName = "employees";
 
     // Create a new mysqli connection. Remember to enable this in php.ini !!
     $conn = new mysqli($serverName, $username, $password, $dbName);

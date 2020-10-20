@@ -22,6 +22,13 @@
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <?php
+        $images = array('https://s3.amazonaws.com/staticimages.webapplication/fjords.jpg',
+                        'https://s3.amazonaws.com/staticimages.webapplication/lights.jpg',
+                        'https://s3.amazonaws.com/staticimages.webapplication/nature.jpg'
+                       );
+        
+       print_r($images);
+          
         // scan the images directory for images to use in the carousel
         // first 2 keys in the returned array are . and ..   We will need to filter those!
         $images = scandir('assets/images');

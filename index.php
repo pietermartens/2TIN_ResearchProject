@@ -33,10 +33,8 @@
         
         
      foreach($images as $key => $url){
-            if (!in_array($url,array(".",".."))){
-                // First item needs to get the active css class. Otherwise the carousel will not show
-                echo ($key == 2) ? '<div class="carousel-item active">' : '<div class="carousel-item">';
                 $imageData = base64_encode(file_get_contents($url));
+                echo ($key == 0) ? '<div class="carousel-item active">' : '<div class="carousel-item">';
                 echo "<img class='d-block w-100' src="data:image/jpeg;base64,'.$imageData.'"/></div>";
             }     
         }

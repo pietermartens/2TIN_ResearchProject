@@ -6,3 +6,6 @@ files:
 hooks:
   BeforeInstall:
     - location: CleanupScript.sh
+ AfterInstall:
+    - location: InstallScript.sh
+      timeout: 600

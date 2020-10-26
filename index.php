@@ -24,6 +24,9 @@
     <?php
         // scan the images directory for images to use in the carousel
         // first 2 keys in the returned array are . and ..   We will need to filter those!
+        $image = 'https://d1tdj753you0up.cloudfront.net/fit-in/300x300/fjords.jpg';
+        $imageData = base64_encode(file_get_contents($image));
+        echo '<img src="data:image/jpeg;base64,'.$imageData.'">';
         $images = scandir('assets/images');
         foreach($images as $key => $image){
             if (!in_array($image,array(".",".."))){
@@ -47,7 +50,6 @@
         <?php
         // Use 'composer install' to get dependencies
         // Remember to run tests using PHPUnit: 'vendor/bin/phpunit tests'
-        echo "<img src='https://d1tdj753you0up.cloudfront.net/fit-in/100x100/fjords.jpg'/>"
         // composer autoload. Might require 'composer dump-autoload' to work.
         require_once('config.php');
         // Build sql query and get results

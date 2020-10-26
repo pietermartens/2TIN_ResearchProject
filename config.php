@@ -1,7 +1,7 @@
 <?php
     require('vendor/autoload.php');
     // Define mysql server settings
-    $serverName = "sqldatabase.cf5ctuboq7jl.us-east-1.rds.amazonaws.com";
+    $serverName = "terraform-20201026091926535900000001.cf5ctuboq7jl.us-east-1.rds.amazonaws.com";
     $username = "admin";
     $password = "Cloud2020";
     $dbName = "employees";

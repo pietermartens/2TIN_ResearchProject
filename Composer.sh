@@ -1,3 +1,4 @@
 sudo apt-get install -y composer
 cd /var/www/html
-sudo composer install -y
+sudo su
+composer install

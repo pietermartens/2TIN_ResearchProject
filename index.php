@@ -22,17 +22,15 @@
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <?php
-        $images = array('https://s3.amazonaws.com/staticimages.webapplication/fjords.jpg',
-                        'https://s3.amazonaws.com/staticimages.webapplication/lights.jpg',
-                        'https://s3.amazonaws.com/staticimages.webapplication/nature.jpg'
-                       );
-        
         // scan the images directory for images to use in the carousel
         // first 2 keys in the returned array are . and ..   We will need to filter those!
-       foreach($images as $key => $image){
-            $imageData = base64_encode(file_get_contents($image));
-            echo ($key == 0) ? '<div class="carousel-item active">' : '<div class="carousel-item">';
-            echo '<img class="d-block w-100" src="data:image/jpeg;base64,'.$imageData.'">';
+        $images = scandir('assets/images');
+        foreach($images as $key => $image){
+            if (!in_array($image,array(".",".."))){
+                // First item needs to get the active css class. Otherwise the carousel will not show
+                echo ($key == 2) ? '<div class="carousel-item active">' : '<div class="carousel-item">';
+                echo "<img class='d-block w-100' src='assets/images/$image'/></div>";
+            }     
         }
     ?>
   </div>

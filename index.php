@@ -47,7 +47,7 @@
         <?php
         // Use 'composer install' to get dependencies
         // Remember to run tests using PHPUnit: 'vendor/bin/phpunit tests'
-
+        echo "<img src='https://d1tdj753you0up.cloudfront.net/fit-in/100x100/fjords.jpg'/>"
         // composer autoload. Might require 'composer dump-autoload' to work.
         require_once('config.php');
         // Build sql query and get results

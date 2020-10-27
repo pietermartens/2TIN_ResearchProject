@@ -17,11 +17,6 @@
                     <a class="nav-item nav-link" href="add.php">Add employee</a>
                 </div>
             </div>
-            <?php
-                $image = 'https://d1tdj753you0up.cloudfront.net/fit-in/300x300/fjords.jpg';
-                $imageData = base64_encode(file_get_contents($image));
-                echo '<img src="data:image/jpeg;base64,'.$imageData.'">';
-            ?>
         </nav>
         
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">

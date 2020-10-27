@@ -4,5 +4,5 @@ cd /var/www/html
 sudo su
 composer install
 sudo chmod 777 /var/www/html
-cd home/ubuntu
+cd /home/ubuntu
 ansible-playbook RDS.yml 

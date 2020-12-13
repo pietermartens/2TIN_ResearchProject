@@ -1,0 +1,79 @@
+- name: Getting RDS info
+  hosts: localhost
+  vars:
+    aws_access_key: ASIA4X3SQ3TIRSV3546X
+    aws_secret_key: NuJJgVCRfV8nGhCZDpX4/wEXX2imx7sq2hxLXJcY
+    security_token: FwoGZXIvYXdzEDwaDBueN3IhBYSwOK4rXCKuAQ/6RTWoYFloifHT4Z2C0NxVlJqfXDydiesC2DviK5qY2tHa0mr6gcLZG149C+Q2uGW59wCNRvfOFbMjBDLUyelQvSB38fzyJwNQH5x+aj84Zx0uXeRhUvxBRNlLGcnWHfqVIzTSCpLMndi8quylIY5MfPsUzqrkSWrm4rXQ1f9y528maE53y5PNqhgm8wAwnQd7H0clBU4HZI8+z3hYB9osR1oIpHHQZBWA6bEpuyjvtNn+BTItHOLvSKtcigp8qC399MlyOWVDnVFN8IAHs4K3Lf3CaTYv3wMDdyExcWrN34XK
+
+  tasks:
+    - name: RDS
+      community.aws.rds_instance:
+        aws_access_key: "{{ aws_access_key }}"
+        aws_secret_key: "{{ aws_secret_key }}"
+        security_token: "{{ security_token }}"
+        region: us-east-1
+        db_instance_identifier: webappdb
+      register: rds
+
+    - debug:
+        var: rds.endpoint.address
+
+
+    - name: replace line with rds endpoint
+      lineinfile:
+        path: /var/www/html/config.php
+        regexp: ' \$serverName = *'
+        line: '    $serverName = "{{ rds.endpoint.address }}";'
+
+    - name: execute sql script
+      shell: "mysql -h {{ rds.endpoint.address }} -u admin -pCloud2020 employees < /var/www/html/employees.sql"
+
+    - name: upload operation
+      community.aws.s3_sync:
+        aws_access_key: "{{ aws_access_key }}"
+        aws_secret_key: "{{ aws_secret_key }}"
+        security_token: "{{ security_token }}"
+        bucket: tf-server-staticimages-bucket
+        permission: public-read
+        file_root: /var/www/html/assets/images
+
+    - name: register keys for syncronization
+      aws_s3:
+        mode: list
+        bucket: tf-server-staticimages-bucket
+      register: s3_bucket_items
+
+    - debug:
+        var: s3_bucket_items.s3_keys
+
+
+    - name: replace line with rds endpoint
+      lineinfile:
+        path: /var/www/html/index.php
+        insertbefore: ' \$images = *'
+        line: '        $image1 = "{{ s3_bucket_items.s3_keys[0] }}";'
+
+    - name: replace line with rds endpoint
+      lineinfile:
+        path: /var/www/html/index.php
+        insertafter: ' \$image1 = *'
+        line: '        $image2 = "{{ s3_bucket_items.s3_keys[1] }}";'
+
+    - name: replace line with rds endpoint
+      lineinfile:
+        path: /var/www/html/index.php
+        insertafter: ' \$image2 = *'
+        line: '        $image3 = "{{ s3_bucket_items.s3_keys[2] }}";'
+
+    - name: replace line with rds endpoint
+      lineinfile:
+        path: /var/www/html/index.php
+        regex: ' \$images = *'
+        line: '        $images = array($image1,$image2,$image3);'
+
+
+    - name: replace line with rds endpoint
+      lineinfile:
+        path: /var/www/html/index.php
+        regex: 'echo "<img class*'
+        line: "                echo \"<img class='d-block w-100' src='https://tf-server-staticimages-bucket.s3.amazonaws.com/$image'/></div>\";"

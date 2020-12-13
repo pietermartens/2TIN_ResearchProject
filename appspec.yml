@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/html/klmjk
+    destination: /var/www/html/
 hooks:
   AfterInstall:
     - location: Composer.sh

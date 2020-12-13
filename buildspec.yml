@@ -7,6 +7,7 @@ phases:
       - ansible-galaxy collection install community.mysql
       - ansible-galaxy collection install community.aws
       - apt-get install -y composer
+      - echo pwd
   build: 
     commands: 
       - export COMPOSER_HOME="$HOME/.config/composer"

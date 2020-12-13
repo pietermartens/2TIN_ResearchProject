@@ -4,14 +4,10 @@
     aws_access_key: ASIA4X3SQ3TIXBD5NCMF
     aws_secret_key: LOqM08wuHUx/4DSIWzQgCF89YkaT//15Gt1EtYKb
     security_token: FwoGZXIvYXdzED8aDJXR8kW2w89Ba9Y3SSKuASLcsjJO5mcL8g84o/vvuWb4dKlsReHkF8wOZTrOo9hTlk60Z73E9dpPIvaLwlKILyxNC6aA2V7Pmaz2XLmaV5iT4NE3/r7V6dBNntHKCcssEfhyjQLfWjYBx3fTXdxoV6cX+YCREc8+fgztOmKj7m3AHD1a/dVy9cuNSxmsuP6CdPez7WH24rUsFvVFDzXfazMOiKMrvMKYtuUrZTkLkpoHC4B4/apexO8Q7tVjACiuidr+BTItIsYDP03x6FWrsYLEHhFPzFYPVAMI3Ydvkly2OUS9u0bt6GsxP14zpWfRE2Wc
-    ansible_python_interpreter: /usr/bin/python3
   tasks:
-    - name: Install boto3 and botocore with pip3 module
-      pip:
-        name: 
-        - boto3
-        - botocore
     - name: RDS
+      vars:
+          ansible_python_interpreter: /usr/bin/python3
       community.aws.rds_instance:
         aws_access_key: "{{ aws_access_key }}"
         aws_secret_key: "{{ aws_secret_key }}"

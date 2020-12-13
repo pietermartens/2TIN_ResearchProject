@@ -21,7 +21,7 @@
 
     - name: replace line with rds endpoint
       lineinfile:
-        path: /var/www/html/config.php
+        path: config.php
         regexp: ' \$serverName = *'
         line: '    $serverName = "{{ rds.endpoint.address }}";'
 
@@ -35,7 +35,7 @@
         security_token: "{{ security_token }}"
         bucket: tf-server-staticimages-bucket
         permission: public-read
-        file_root: /var/www/html/assets/images
+        file_root: assets/images
 
     - name: register keys for syncronization
       aws_s3:
@@ -49,31 +49,31 @@
 
     - name: replace line with rds endpoint
       lineinfile:
-        path: /var/www/html/index.php
+        path: index.php
         insertbefore: ' \$images = *'
         line: '        $image1 = "{{ s3_bucket_items.s3_keys[0] }}";'
 
     - name: replace line with rds endpoint
       lineinfile:
-        path: /var/www/html/index.php
+        path: index.php
         insertafter: ' \$image1 = *'
         line: '        $image2 = "{{ s3_bucket_items.s3_keys[1] }}";'
 
     - name: replace line with rds endpoint
       lineinfile:
-        path: /var/www/html/index.php
+        path: index.php
         insertafter: ' \$image2 = *'
         line: '        $image3 = "{{ s3_bucket_items.s3_keys[2] }}";'
 
     - name: replace line with rds endpoint
       lineinfile:
-        path: /var/www/html/index.php
+        path: index.php
         regex: ' \$images = *'
         line: '        $images = array($image1,$image2,$image3);'
 
 
     - name: replace line with rds endpoint
       lineinfile:
-        path: /var/www/html/index.php
+        path: index.php
         regex: 'echo "<img class*'
         line: "                echo \"<img class='d-block w-100' src='https://tf-server-staticimages-bucket.s3.amazonaws.com/$image'/></div>\";"

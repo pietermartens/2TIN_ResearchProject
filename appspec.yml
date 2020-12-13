@@ -4,8 +4,6 @@ files:
   - source: /
     destination: /var/www/html/
 hooks:
-  BeforeInstall:
-    - location: CleanupScript.sh
   AfterInstall:
     - location: Composer.sh
 

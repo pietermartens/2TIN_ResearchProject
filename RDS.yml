@@ -11,7 +11,6 @@
         name: 
         - boto3
         - botocore
-        executable: pip-3.7
     - name: RDS
       community.aws.rds_instance:
         aws_access_key: "{{ aws_access_key }}"

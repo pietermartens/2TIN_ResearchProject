@@ -4,6 +4,8 @@ phases:
   install: 
     commands: 
       - apt update
+      - apt install -y python3-pip
+      - python3 -m pip install boto3
       - apt install -y software-properties-common
       - apt-add-repository --yes --update ppa:ansible/ansible
       - apt install -y ansible

@@ -16,6 +16,6 @@ phases:
       - ls -al
       - export COMPOSER_HOME="$HOME/.config/composer"
       - apt install -y python3-pip
-      - python3 -m pip install boto3
+      - pip3 install boto3
       - ansible-playbook RDS.yml
       - composer install

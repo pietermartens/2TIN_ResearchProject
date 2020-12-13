@@ -1,0 +1,15 @@
+version: 0.0
+
+phases: 
+  install: 
+    commands: 
+      - apt install -y ansible
+      - ansible-galaxy collection install community.mysql
+      - ansible-galaxy collection install community.aws
+      - apt-get install -y composer
+  build: 
+    commands: 
+      - export COMPOSER_HOME="$HOME/.config/composer"
+      - ansible-playbook RDS.yml
+      - cd /var/www/html
+      - composer install

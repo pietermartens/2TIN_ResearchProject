@@ -20,5 +20,5 @@ phases:
       - python3 -m pip install --force-reinstall botocore
       - pip3 freeze
       - ansible --version
-      - ansible-playbook RDS.yml
+      - ansible-playbook RDS.yml -e 'ansible_python_interpreter=/usr/bin/python3'
       - composer install

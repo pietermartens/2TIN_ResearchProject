@@ -6,6 +6,7 @@ phases:
       - apt-add-repository --yes --update ppa:ansible/ansible
       - apt install -y ansible
       - apt-get install -y composer
+      - pip install botocore
   build: 
     commands: 
       - export COMPOSER_HOME="$HOME/.config/composer"
